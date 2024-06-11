@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BI Production</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: sans-serif;
+            background-color: #E1ECEA;
+            margin: 0;
+            padding: 0;
+        }
+        p {
+            margin: 0;
+        }
+        @keyframes fade_in {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        @keyframes slide_up1 {
+            from {margin-top: 240px;}
+            to {margin-top: 210px;}
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: rgb(87, 58, 212);
+        }
+        ::placeholder
+        {
+            color: #E1ECEA;
+        }
+        .head_top {
+            width: 100%;
+            height: 20px;
+            position: absolute;
+            top: 80px;
+            background: rgb(86,112,138);
+            background: linear-gradient(180deg, rgba(86,112,138,1) 0%, rgba(0,212,255,0) 100%);
+        }
+        .navbar {
+            position: fixed;
+            width: 100%;
+            height: 80px;
+            background: rgb(86,112,138);
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 30;
+        }
+        .nav_options {
+            display: flex;
+            justify-content: space-between;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+        .nav_options a {
+            color: white;
+            text-decoration: none;
+            padding: 20px 10px;
+            margin: 0 5px;
+        }
+        .scroll_up {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 31;
+            background-color: rgb(86,112,138);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .scroll_down {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 30;
+            background-color: rgb(86,112,138);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+        .header {
+            color: white;
+            animation-name: fade_in;
+            animation-duration: 1s;
+        }
+        .header a {
+            margin-left: 450px;
+            position: absolute;
+            margin-top: 40px;
+            transition: all;
+        }
+        .header a:hover
+        {
+            filter: brightness(80%);
+        }
+        .h_img {
+            width: 99%;
+            height: 500px;
+            position: absolute;
+            z-index: -1;
+            left: 6.5px;
+            top: 110px;
+        }
+        .h_h1 {
+            z-index: 10;
+            text-shadow: 0px 0px 5px black;
+            font-size: 80px;
+            margin-top: 210px;
+            animation-name: slide_up1;
+            animation-duration: 1s;
+            text-align: center;
+        }
+        .h_p1 {
+            z-index: 10;
+            text-shadow: 0px 0px 5px black;
+            font-size: 23px;
+            margin-top: -70px;
+            text-align: center;
+        }
+        .header2 {
+            height: 200px;
+            z-index: 20;
+            text-align: center;
+        }
+        .header2 h1 {
+            font-size: 36px;
+        }
+        .box1, .box2, .box3 {
+            height: 140px;
+            width: 350px;
+            position: absolute;
+            margin-top: 220px;
+            padding-top: 20px;
+            padding-bottom: 25px;
+            border-radius: 30px;
+            margin-left: 110px;
+            background-color: #D9D9D9;
+            box-shadow: 0 0 7px;
+        }
+        .box1 p, .box2 p, .box3 p {
+            font-size: 24px;
+        }
+        .box1 {
+            left: -65px;
+        }
+        .box2 {
+            left: 360px;
+        }
+        .box3 {
+            right: 40px;
+        }
+        .about {
+            position: absolute;
+            top: 730px;
+            left: 38%;
+            font-size: 24px;
+        }
+        .about h1 {
+            text-align: center;
+        }
+        .about h2 {
+            font-size: 24px;
+        }
+        .a-left, .a-right {
+            border-radius: 40px;
+            box-shadow: 2px 1px 0 #4b515a40;
+            background-color: #8392A8;
+            color: #D9D9D9;
+            position: absolute;
+            height: 200px;
+            width: 580px;
+            padding-right: 10px;
+            padding-left: 10px;
+            text-align: justify;
+            font-size: 18px;
+        }
+        .a-left h2, .a-right h2 {
+            text-align: center;
+        }
+        .a-left {
+            margin-left: -470px;
+            padding: auto;
+        }
+        .a-right {
+            margin-left: 180px;
+        }
+        .jasa {
+            position: absolute;
+            top: 1000px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            width: 80%;
+            text-align: center;
+        }
+        .jasa h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 90px;
+        }
+        .jasa .jasa2 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .jasa1 {
+            background-color: #D9D9D9;
+            border-radius: 20px;
+            box-shadow: 0 0 7px;
+            margin: 10px;
+            padding: 20px;
+            width: 40%;
+            height: 140px;
+            text-align: center;
+            align-content: center;
+            cursor: pointer;
+            margin-bottom: -20px;
+        }
+        .jasa1:hover
+        {
+            background-color: #8392A8;
+            color: #E1ECEA;
+        }
+
+.paket {
+    height: 200px;
+    z-index: 20;
+    text-align: center;
+    margin-top: 1100px;
+}
+
+.paket h1 {
+    font-size: 36px;
+}
+
+.box4, .box5, .box6 {
+    height: 440px;
+    width: 350px;
+    position: absolute;
+    padding-top: 20px;
+    padding-bottom: 25px;
+    border-radius: 30px;
+    margin-left: 110px;
+    background-color: #D9D9D9;
+    box-shadow: 0 0 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .box4 p, .box5 p, .box6 p {
+    font-size: 24px;
+}
+
+    .box4 {
+    left: -65px;
+}
+
+    .box5 {
+    left: 360px;
+}
+
+    .box6 {
+    right: 40px;
+}
+
+    .box-content {
+    flex: 1;
+}
+
+    .buttn {
+    font-family: sans-serif;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    background-color: rgb(86, 112, 138);
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    align-self: center;
+}
+.buttn:hover
+{
+    background-color: rgb(202, 209, 216);
+    color: #262726;
+}
+
+.team {
+            height: 200px;
+            z-index: 20;
+            text-align: center;
+        }
+        .team h1 {
+            margin-top: 380px;
+            font-size: 36px;
+            color: black;
+        }
+        .box7, .box8, .box9 {
+            height: 200px;
+            width: 350px;
+            position: absolute;
+            padding-top: 20px;
+            padding-bottom: 25px;
+            border-radius: 30px;
+            margin-left: 110px;
+            color: #E1ECEA;
+            background-color: rgb(100, 123, 147);
+            box-shadow: 0 0 7px;
+            font-weight: bold;
+        }
+        .box7 p, .box8 p, .box9 p {
+            font-size: 24px;
+        }
+        .box7 {
+            left: -65px;
+        }
+        .box8 {
+            left: 360px;
+        }
+        .box9 {
+            right: 40px;
+        }
+
+        .karir{
+    height: 200px;
+    z-index: 20;
+    text-align: center;
+    margin-top: 140px;
+}
+
+.karir h1 {
+    font-size: 36px;
+}
+.boxa
+{
+    height: 440px;
+    width: 350px;
+    position: absolute;
+    padding-top: 20px;
+    padding-bottom: 25px;
+    border-radius: 30px;
+    margin-left: 110px;
+    background-color: #D9D9D9;
+    box-shadow: 0 0 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.boxb, .boxc {
+    height: 440px;
+    width: 350px;
+    position: absolute;
+    padding-top: 20px;
+    padding-bottom: 25px;
+    border-radius: 30px;
+    margin-left: 110px;
+    background-color: #D9D9D9;
+    box-shadow: 0 0 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .boxb p, .boxc p {
+    font-size: 24px;
+    margin-top: -180px;
+}
+
+    .boxa {
+    left: -65px;
+    
+}
+
+    .boxb {
+    left: 360px;
+}
+
+    .boxc {
+    right: 40px;
+}
+    .boxc p {
+        font-size: 17px;
+        text-align: justify;
+    }
+    .boxa h2 {
+        margin-bottom: 0px;
+    }
+    .boxa p {
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 18px;
+        margin-top: -120px;
+    }
+    .boxc h1 {
+        font-size: 28px;
+    }
+    .box-content {
+    flex: 1;
+    }
+    .boxb input
+    {
+        height: 50px;
+        box-shadow: 0 0 10px;
+        border-radius: 100px;
+        border: none;
+        background-color: #8392A8;
+        color: #E1ECEA;
+    }
+    .boxb button
+    {
+        height: 80px;
+        border-radius: 80px;
+        border: none;
+        cursor: pointer;
+    }
+    .boxb button:hover
+    {
+        background-color: #8392A8;
+        color: #E1ECEA;
+    }
+
+    .kontak
+    {
+        width: 100%;
+        height: 200px;
+        background-color: rgb(100, 123, 147);
+        margin-top: 400px;
+    }
+    .ico
+    {
+        position: absolute;
+        width: 1px;
+        left: 15px;
+        bottom: -2885px;
+        
+    }
+    .txt
+    {
+        position: absolute;
+        left: 80px;
+        font-size: 18px;
+        bottom: -2872px;
+        color: #E1ECEA;
+    }
+    </style>
+</head>
+<body>
+    <div id="top_anchor" style="position: absolute; top: 0;"></div>
+    <div class="navbar">
+        <a href=""><img src="logo2.png" height="70px" style="margin-left: 20px;"></a>
+        <div class="nav_options">
+            <a href="#about">ABOUT</a>
+            <a href="#jasa">JASA</a>
+            <a href="#paket">PAKET</a>
+            <a href="#team">OUR TEAM</a>
+            <a href="#karir">KARIR</a>
+        </div>
+    </div>
+    <img class="h_img" src="head_bg.png">
+    <div class="head_top"></div>
+    
+    <div class="scroll_up" id="top">
+        <a href="#top_anchor"><img src="top.png" height="40px" width="30px" style="margin-top: -1px;"></a>
+    </div>
+    
+    <div class="scroll_down" id="bottom">
+        <a href="#bottom_anchor"><img src="top.png" height="40px" width="30px" style="margin-top: 10px; transform: rotate(180deg);"></a>
+    </div>
+    
+    <div class="header">
+        <h1 class="h_h1">BI PRODUCTION</h1>
+        <p class="h_p1"><b>Membuat Website dan Aplikasi Berkualitas untuk kalian</b></p>
+        <a href="#jasa"><img src="bryan.png" height="80px"></a>
+    </div>
+
+    <div class="header2">
+        <div class="box1">
+            <p>Sudah Membuat</p>
+            <h1>5000+</h1>
+            <p>Aplikasi Website</p>
+        </div>
+        <div class="box2">
+            <p>Sudah Membuat</p>
+            <h1>8000+</h1>
+            <p>Aplikasi Software</p>
+        </div>
+        <div class="box3">
+            <p>Sudah Membuat</p>
+            <h1>2000+</h1>
+            <p>Projek Jaringan</p>
+        </div>
+    </div>
+
+    <div id="about" style="height: 1px; margin-top: 130px;"></div>
+    <div class="about">
+        <h1>Tentang Kami</h1>
+        <div class="a-left">
+            <h2>Visi & Misi</h2>
+            <p>Misi kami adalah untuk membantu pengguna dalam bisnis mereka dengan cara membuat website dan aplikasi karena biasanya membuat website dan aplikasi membutuhkan pengetahuan dasar pemrograman.</p>
+        </div>
+        <div class="a-right">
+            <h2>Sejarah Perusahaan</h2>
+            <p>Perusahaan kami dimulai pada tahun 2017 untuk membantu pengguna membuat website, pada tahun 2020 kita menambahkan jasa untuk membuat software dan jaringan.</p>
+        </div>
+    </div>
+    <div class="jasa" id="jasa">
+        <h1>Jasa Kami</h1>
+        <div class="jasa2">
+            <div class="jasa1">
+                <h2>Pembuatan Website</h2>
+            </div>
+            <div class="jasa1">
+                <h2>Pengembangan Aplikasi Mobile</h2>
+            </div>
+            <div class="jasa1">
+                <h2>Branding</h2>
+            </div>
+            <div class="jasa1">
+                <h2>Content Creative</h2>
+            </div>
+            <div class="jasa1">
+                <h2>Digital Marketing</h2>
+            </div>
+            <div class="jasa1">
+                <h2 id="paket">Advertisement</h2>
+            </div>
+        </div>
+    </div>
+    <div class="paket">
+        <h1>Paket</h1>
+        <div class="box4">
+            <img src="1.png" width="120px" style="margin-left: 34%;">
+            <h1>Bronze</h1>
+            <p>Bisa mendapat jasa</p><br>
+            <p>Pembuatan Website, Branding, dan Content Creative</p>
+            <button class="buttn">Pilih Paket</button>
+        </div>
+        <div class="box5">
+            <img src="2.png" width="120px" style="margin-left: 34%;">
+            <h1>Gold</h1>
+            <p>Bisa mendapat jasa</p><br>
+            <p>Pembuatan Website, Pengembangan Aplikasi Mobile, Branding, Digital Marketing, dan Content Creative </p>
+            <button class="buttn">Pilih Paket</button>
+        </div>
+        <div class="box6">
+            <img src="3.png" width="120px" style="margin-left: 34%;">
+            <h1>Diamond</h1>
+            <p>Bisa mendapat jasa</p><br>
+            <p>Pembuatan Website, Pengembangan Aplikasi Mobile, Branding, Content Creative, Digital Marketing, dan Advertisement</p>
+            <button id="team" class="buttn">Pilih Paket</button>
+        </div>
+    </div>
+    
+    <div class="team">
+        <h1>Team Kami</h1>
+        <div class="box7">
+            <img src="orang.png" width="100px" style="margin-top: 15px;">
+            <p>Wildan Izhar</p>
+            <p style="font-size: 12px;">Lead Web Developer</p>
+            <p style="font-size: 8px;">Age: 21<br>Sex: Male<br> 7 Years of Experience</p>
+        </div>
+        <div class="box8">
+            <img src="orang.png" width="100px" style="margin-top: 15px;">
+            <p>Agus Gustavo</p>
+            <p style="font-size: 12px;">Lead Software Engineer</p>
+            <p style="font-size: 8px;">Age: 32<br>Sex: Male<br> 21 Years of Experience</p>
+        </div>
+        <div class="box9">
+            <img src="orang.png" width="100px" style="margin-top: 15px;">
+            <p>Alif Normalif</p>
+            <p style="font-size: 12px;" id="karir">Lead Network Engineer</p>
+            <p style="font-size: 8px;">Age: 22<br>Sex: Male<br> 6 Years of Experience</p>
+            
+        </div>
+    </div>
+    
+    <div class="karir">
+        <h1>Karir</h1>
+
+        <div class="boxa">
+            <h1>Lowongan Kerja</h1>
+            <p>Anda bisa bekerja di perusahaan ini jika anda sudah lulus kuliah s1 </p>
+            <h2>Syarat & Ketentuan</h2>
+            <p>diatas usia 21<br>
+                memiliki social credit diatas 1.000<br>
+                tidak memiliki pekerjaan lain<br>
+                Rakyat Negara republik Indonesia</p>
+        </div>
+
+        <div class="boxb">
+            <h1>Formulir Kerja</h1>
+            <input type="text" placeholder="  Nama" width="100%">
+            <input type="text" placeholder="  E-Mail" width="100%">
+            <input type="text" placeholder="  Nomor Telfon" width="100%">
+            <Button>Submit</Button>
+        </div>
+
+        <div class="boxc">
+            <h1>Budaya Kerja dan
+                Nilai-Nilai Perusahaan</h1>
+            <p>Komunikasi Terbuka: Karyawan merasa nyaman untuk menyampaikan ide, masukan, dan umpan balik tanpa takut akan konsekuensi negatif.<br><br>
+
+                Kerja Tim: Kolaborasi antar karyawan dan departemen dihargai dan diutamakan untuk mencapai tujuan bersama.<br><br>
+                
+                Inovasi: Perusahaan mendorong karyawan untuk berpikir kreatif dan menawarkan solusi baru untuk masalah yang dihadapi.<br><br>
+                
+                Pengakuan dan Apresiasi: Karyawan diberi penghargaan atas pencapaian dan kontribusi mereka, yang dapat meningkatkan motivasi dan moral.</p>
+        </div>
+    </div>
+
+    <div class="kontak">
+        
+        <div class="ico">
+        <img src="4.png" width="50px"><br>
+        <img src="5.png" width="50px"><br>
+        <img src="6.png" width="50px">
+        </div> 
+        
+        <div class="txt">
+        <p>62 812-8006-3529</p><br><br>
+        <p>@officialsmkbi</p><br><br>
+        <p>info@smkbinainformatika.sch.id</p>
+        </div>
+    </div>
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.864847151401!2d106.72189210803435!3d-6.281492361454926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f0754ef56067%3A0x8220dbf978d54527!2sSMK%20Bina%20Informatika!5e0!3m2!1sen!2sid!4v1717749602046!5m2!1sen!2sid" width="100%" height="300" style="border:0;" allowfullscreen="1" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+
+    <div id="bottom_anchor" style="height: 1px; margin-bottom: 0;"></div>
+    
+    <script>
+        window.onscroll = function() {scrollFunction()};
+        let goup = document.getElementById("top");
+        let godown = document.getElementById("bottom");
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                goup.style.opacity = "1";
+            } else {
+                goup.style.opacity = "0";
+            }
+
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+                godown.style.opacity = "0";
+            } else {
+                godown.style.opacity = "1";
+            }
+        }
+    </script>
+</body>
+</html>
